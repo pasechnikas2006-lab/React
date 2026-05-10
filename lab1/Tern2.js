@@ -10,7 +10,7 @@ function manyChecks() {
     // if...else
     let resultIf = '';
 
-    // Первая часть
+    
     if (a > 10) {
         resultIf += 'a is bigger than 10';
     } else {
@@ -21,19 +21,19 @@ function manyChecks() {
         resultIf += 'a is less than or equal to 10 ' + specialCase;
     }
 
-    // Вторая часть (a === 15)
+   
     if (a === 15) {
         resultIf += 'but a is not 15';
     }
 
-    // Третья часть (a > 5)
+   
     if (a > 5) {
         resultIf += 'and a is greater than 5';
     } else {
         resultIf += 'and a is less than or equal to 5 ';
     }
 
-    // Четвёртая часть (проверка на чётность)
+    
     if (a % 2) {
         resultIf += ' and a is odd';
     } else {
@@ -42,16 +42,15 @@ function manyChecks() {
 
     console.log(`Результат (if...else): ${resultIf}`);
 
-    // ========== ВАРИАНТ С switch ==========
+    //switch 
     let resultSwitch = '';
 
-    // Первая часть с switch (используем fall-through для составных условий)
-    // Для switch нужно сначала определить, какой случай обрабатывать
+   
     switch (true) {
         case (a > 10):
             resultSwitch += 'a is bigger than 10';
             break;
-        default: // a <= 10
+        default: 
             switch (a) {
                 case 5:
                     resultSwitch += 'a is less than or equal to 10 an example of a special case';
@@ -62,17 +61,17 @@ function manyChecks() {
             }
     }
 
-    // Вторая часть
+    
     switch (a) {
         case 15:
             resultSwitch += 'but a is not 15';
             break;
         default:
-            // ничего не добавляем
+            
             break;
     }
 
-    // Третья часть
+    
     switch (true) {
         case (a > 5):
             resultSwitch += 'and a is greater than 5';
@@ -82,7 +81,7 @@ function manyChecks() {
             break;
     }
 
-    // Четвёртая часть
+    
     switch (a % 2) {
         case 1:
             resultSwitch += ' and a is odd';
