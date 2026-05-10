@@ -172,7 +172,7 @@
     </div>
 
     <div class="buttons">
-        <!-- Цифры -->
+        
         <button class="digit" data-value="7">7</button>
         <button class="digit" data-value="8">8</button>
         <button class="digit" data-value="9">9</button>
@@ -206,39 +206,39 @@
 </div>
 
 <script>
-    // Получаем элементы DOM
+    
     const expressionInput = document.getElementById('expressionInput');
     const historyDiv = document.getElementById('historyList');
 
-    let currentExpression = ''; // Текущее выражение для отображения
+    let currentExpression = ''; 
 
-    // Функция добавления записи в историю
+    
     function addToHistory(expression, result) {
-        // Создаем элемент для истории
+        
         const historyItem = document.createElement('div');
         historyItem.className = 'history-item';
         historyItem.innerHTML = `${expression} = ${result}`;
 
-        // Добавляем в начало истории (чтобы новые записи были сверху)
+        
         const historyList = document.getElementById('historyList');
 
-        // Проверяем, есть ли сообщение "История пуста"
+        
         const emptyMessage = historyList.querySelector('.history-empty');
         if (emptyMessage) {
             emptyMessage.remove();
         }
 
-        // Добавляем новый элемент в начало списка
+        
         historyList.insertBefore(historyItem, historyList.firstChild);
     }
 
-    // Функция очистки истории
+    
     function clearHistory() {
         const historyList = document.getElementById('historyList');
         historyList.innerHTML = '<div class="history-empty">История пуста</div>';
     }
 
-    // Функция обновления поля ввода
+    
     function updateDisplay() {
         if (currentExpression === '') {
             expressionInput.value = '0';
@@ -247,33 +247,32 @@
         }
     }
 
-    // Функция вычисления результата
+    
     function calculate() {
         if (currentExpression === '') {
             return null;
         }
 
         try {
-            // Заменяем отображаемый знак деления на оператор JavaScript
+            
             let expressionToCompute = currentExpression;
 
-            // Вычисляем результат с помощью eval (для простого калькулятора допустимо)
-            // Внимание: eval может быть опасен, но для учебного примера в контролируемой среде OK
+            
             const result = eval(expressionToCompute);
 
-            // Проверяем, что результат - число и не бесконечность
+            
             if (isNaN(result) || !isFinite(result)) {
                 alert('Ошибка: недопустимое выражение');
                 return null;
             }
 
-            // Округляем результат до 10 знаков после запятой, если нужно
+            
             const formattedResult = Number.isInteger(result) ? result : parseFloat(result.toFixed(10));
 
-            // Добавляем в историю
+            
             addToHistory(currentExpression, formattedResult);
 
-            // Очищаем текущее выражение и устанавливаем результат как новое значение
+            
             currentExpression = String(formattedResult);
             updateDisplay();
 
@@ -284,9 +283,9 @@
         }
     }
 
-    // Функция добавления цифры
+    
     function addDigit(digit) {
-        // Если текущее выражение "0" и нажимаем ещё цифру, заменяем
+        
         if (currentExpression === '0') {
             currentExpression = digit;
         } else {
@@ -295,19 +294,19 @@
         updateDisplay();
     }
 
-    // Функция добавления оператора
+    
     function addOperator(operator) {
         if (currentExpression === '') {
-            // Если выражение пустое, начинаем с 0 плюс оператор
+            
             currentExpression = '0' + operator;
         } else {
-            // Заменяем отображаемый знак на оператор
+            
             const displayOperator = operator
 
-            // Проверяем последний символ - если это оператор, заменяем его
+            
             const lastChar = currentExpression[currentExpression.length - 1];
             if (['+', '-', '*', '/'].includes(lastChar)) {
-                // Заменяем последний оператор
+               
                 currentExpression = currentExpression.slice(0, -1) + displayOperator;
             } else {
                 currentExpression += displayOperator;
@@ -316,13 +315,13 @@
         updateDisplay();
     }
 
-    // Функция очистки
+    
     function clearExpression() {
         currentExpression = '';
         updateDisplay();
     }
 
-    // Обработчики событий для цифр
+    
     document.querySelectorAll('.digit').forEach(button => {
         button.addEventListener('click', () => {
             const value = button.getAttribute('data-value');
@@ -330,7 +329,7 @@
         });
     });
 
-    // Обработчики событий для операторов
+    
     document.querySelectorAll('.operator').forEach(button => {
         button.addEventListener('click', () => {
             const operator = button.getAttribute('data-op');
@@ -338,29 +337,29 @@
         });
     });
 
-    // Обработчик для кнопки "="
+    
     document.getElementById('equalsBtn').addEventListener('click', () => {
         calculate();
     });
 
-    // Обработчик для кнопки "C" (очистка)
+    
     document.getElementById('clearBtn').addEventListener('click', () => {
         clearExpression();
     });
 
-    // Обработчик для очистки истории
+    
     document.getElementById('clearHistoryBtn').addEventListener('click', () => {
         clearHistory();
     });
 
-    // Дополнительно: обработка клавиатуры
+    
     document.addEventListener('keydown', (event) => {
-        // Цифры
+        
         if (/^\d$/.test(event.key)) {
             event.preventDefault();
             addDigit(event.key);
         }
-        // Операторы
+        
         else if (event.key === '+') {
             event.preventDefault();
             addOperator('+');
@@ -377,17 +376,17 @@
             event.preventDefault();
             addOperator('/');
         }
-        // Enter для вычисления
+        
         else if (event.key === 'Enter') {
             event.preventDefault();
             calculate();
         }
-        // Escape для очистки
+        
         else if (event.key === 'Escape') {
             event.preventDefault();
             clearExpression();
         }
-        // Backspace для удаления последнего символа
+        
         else if (event.key === 'Backspace') {
             event.preventDefault();
             currentExpression = currentExpression.slice(0, -1);
