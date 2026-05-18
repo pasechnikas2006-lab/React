@@ -9,7 +9,7 @@ const App = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Загрузка данных
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -38,30 +38,30 @@ const App = () => {
         fetchData();
     }, []);
 
-    // Получение постов пользователя с использованием filter()
+    
     const getUserPosts = (userId) => {
         return posts.filter(post => post.userId === userId);
     };
 
-    // Поиск пользователей с использованием filter()
+    
     const filteredUsers = users.filter(user =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.username.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // Поиск постов с использованием filter() для всех постов
+   
     const filteredPosts = posts.filter(post =>
         post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         post.body.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // Получение имени пользователя по ID
+    
     const getUserName = (userId) => {
         const user = users.find(user => user.id === userId);
         return user ? user.name : 'Неизвестный пользователь';
     };
 
-    // Обработчик клика по пользователю
+    
     const handleUserClick = (user) => {
         setSelectedUser(selectedUser?.id === user.id ? null : user);
     };
@@ -86,7 +86,7 @@ const App = () => {
         <div style={styles.app}>
             <h1 style={styles.title}>Блог постов</h1>
 
-            {/* Переключатель режимов */}
+            
             <div style={styles.modeSwitcher}>
                 <button
                     style={{ ...styles.modeButton, ...(viewMode === 'users' ? styles.activeMode : {}) }}
@@ -110,7 +110,7 @@ const App = () => {
                 </button>
             </div>
 
-            {/* Поиск */}
+            
             <div style={styles.searchContainer}>
                 <input
                     type="text"
@@ -121,10 +121,10 @@ const App = () => {
                 />
             </div>
 
-            {/* Основной контент */}
+            
             {viewMode === 'users' ? (
                 <div style={styles.usersContainer}>
-                    {/* Список пользователей */}
+                    
                     <div style={styles.usersList}>
                         <h2 style={styles.sectionTitle}>Пользователи</h2>
                         {filteredUsers.length === 0 ? (
@@ -147,7 +147,7 @@ const App = () => {
                         )}
                     </div>
 
-                    {/* Посты выбранного пользователя */}
+                    
                     {selectedUser && (
                         <div style={styles.postsContainer}>
                             <h2 style={styles.sectionTitle}>
@@ -174,7 +174,7 @@ const App = () => {
                     )}
                 </div>
             ) : (
-                // Режим отображения всех постов
+                
                 <div style={styles.allPostsContainer}>
                     <h2 style={styles.sectionTitle}>Все посты</h2>
                     <div style={styles.postsGrid}>
