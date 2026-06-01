@@ -1,0 +1,158 @@
+/* Компонент ModeSwitcher */
+.mode-switcher {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.mode-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #007bff;
+    background-color: white;
+    color: #007bff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.mode-button:hover {
+    background-color: #007bff;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.mode-button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Компонент SearchBar */
+.search-container {
+    margin-bottom: 30px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+/* Компонент UserList */
+.users-list {
+    flex: 1;
+    min-width: 300px;
+}
+
+.user-card {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.user-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.user-card.selected {
+    background-color: #e3f2fd;
+    border-left: 4px solid #007bff;
+}
+
+.user-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.user-info {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 3px;
+}
+
+/* Компонент PostsList */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+/* Компонент PostCard */
+.post-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.post-header {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 15px;
+    font-weight: bold;
+}
+
+.post-author {
+    font-size: 16px;
+}
+
+.post-body {
+    padding: 15px;
+}
+
+.post-title {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.post-text {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+    text-transform: capitalize;
+}
+
+/* Адаптивность для компонентов */
+@media (max-width: 768px) {
+    .mode-switcher {
+        flex-direction: column;
+    }
+
+    .mode-button {
+        width: 100%;
+    }
+
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .users-list {
+        min-width: auto;
+    }
+}
